@@ -89,6 +89,7 @@ def clear_interface() -> tuple[
 
 with gr.Blocks(
     title=APP_TITLE,
+    theme=gr.themes.Soft(),
 ) as demo:
 
     gr.Markdown(
@@ -247,5 +248,8 @@ if __name__ == "__main__":
     demo.queue(
         default_concurrency_limit=2,
     ).launch(
-        theme=gr.themes.Soft(),
+        server_name="0.0.0.0",
+        server_port=7860,
+        share=False,
+        show_error=True,
     )
