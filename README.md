@@ -1,33 +1,53 @@
+<div align="center">
+
+# 🤖 AI Developer Assistant - Miço
+
+Kullanıcı isteğini analiz eden, gerekli araçları otomatik olarak seçen ve elde edilen sonuçları tek bir kapsamlı cevap halinde sunan **Agentic AI** tabanlı geliştirici asistanı.
+
+<br>
+
+[![Live Demo](https://img.shields.io/badge/🤗%20Hugging%20Face-Live%20Demo-yellow?style=for-the-badge)](https://huggingface.co/spaces/sedayzc/developer-asisstant-tool-call)
+
+<br>
+
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python)
+![Gradio](https://img.shields.io/badge/Gradio-6.x-orange?style=flat-square)
+![Hugging Face](https://img.shields.io/badge/HuggingFace-Inference%20Providers-yellow?style=flat-square)
+![Pydantic](https://img.shields.io/badge/Pydantic-v2-green?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-success?style=flat-square)
+
+</div>
+
 ---
-title: AI Developer Assistant - Miço
-emoji: 🤖
-colorFrom: indigo
-colorTo: purple
-sdk: gradio
-app_file: app.py
-pinned: false
-license: mit
-python_version: "3.11"
+
+# 📖 Proje Hakkında
+
+**AI Developer Assistant - Miço**, geliştiricilerin yazılım geliştirme süreçlerini hızlandırmak amacıyla geliştirilmiş **LLM tabanlı ajan (Agentic AI)** mimarisine sahip bir yardımcı uygulamadır.
+
+Uygulama;
+
+- Kullanıcı isteğini analiz eder.
+- Kullanılması gereken araçları otomatik olarak belirler.
+- İlgili araçları çalıştırır.
+- Araçlardan elde edilen bilgileri bir araya getirir.
+- Sonuçları tek bir anlamlı cevap halinde kullanıcıya sunar.
+
+Projede **Planner → Executor → Responder** mimarisi kullanılmaktadır.
+
 ---
-LLM destekli, geliştiricilere yönelik akıllı bir yardımcı uygulamasıdır.
 
-Bu proje, **Ollama üzerinde çalışan Qwen3 modeli** ile kullanıcı isteğini analiz eder, gerekli araçları (Tool Calling) otomatik olarak seçer ve elde edilen sonuçları birleştirerek kullanıcıya anlamlı ve kapsamlı bir cevap üretir.
+# ✨ Özellikler
 
-Projede tamamen yerel (local) çalışan bir ajan mimarisi kullanılmıştır.
-
----
-
-# 🚀 Özellikler
-
-- 🧠 LLM tabanlı Tool Planning
-- 🔧 Tool Calling
-- 📦 Structured Output (Pydantic)
+- 🧠 LLM tabanlı Planner
+- 🔧 Otomatik Tool Calling
+- 📦 Pydantic ile Structured Output
 - 📚 PyPI paket araştırması
 - ⭐ GitHub repository araştırması
 - 💬 Stack Overflow soru araştırması
-- 🔄 Çoklu araç (Multi Tool) desteği
+- 🔄 Çoklu Tool (Multi Tool) desteği
+- 🧩 Modüler Agent Mimarisi
 - 🎨 Gradio tabanlı kullanıcı arayüzü
-- 🖥️ Tamamen lokal çalışabilme (Ollama)
+- ☁️ Hugging Face Spaces desteği
 
 ---
 
@@ -37,27 +57,43 @@ Projede tamamen yerel (local) çalışan bir ajan mimarisi kullanılmıştır.
                     Kullanıcı
                         │
                         ▼
-               Planner (Qwen3)
+              ┌──────────────────┐
+              │   Planner LLM    │
+              └──────────────────┘
                         │
                         ▼
-            Structured Tool Plan
+             Structured Tool Plan
                         │
                         ▼
-                 Tool Executor
-         ┌────────┬────────┬────────┐
-         ▼        ▼        ▼
-      PyPI     GitHub   StackOverflow
-         └────────┴────────┴────────┘
+              ┌──────────────────┐
+              │  Tool Executor   │
+              └──────────────────┘
+                 │      │      │
+                 ▼      ▼      ▼
+              PyPI   GitHub   StackOverflow
+                 │      │      │
+                 └──────┴──────┘
                         │
                         ▼
-              Tool Sonuçları
-                        │
-                        ▼
-              Responder (Qwen3)
+              ┌──────────────────┐
+              │  Responder LLM   │
+              └──────────────────┘
                         │
                         ▼
                   Nihai Cevap
 ```
+
+---
+
+# ⚙️ Çalışma Akışı
+
+1. Kullanıcı isteği alınır.
+2. Planner LLM isteği analiz eder.
+3. Structured Tool Plan oluşturulur.
+4. Executor gerekli araçları çalıştırır.
+5. Araçlardan gelen sonuçlar toplanır.
+6. Responder LLM tüm bilgileri sentezler.
+7. Kullanıcıya nihai cevap sunulur.
 
 ---
 
@@ -99,12 +135,11 @@ developer-assistant-tool-call/
 
 ---
 
-## Kullanılan Teknolojiler
+# 🛠️ Kullanılan Teknolojiler
 
-- Python
-- Qwen3
+- Python 3.11
 - Hugging Face Inference Providers
-- Hugging Face Spaces
+- Qwen
 - Gradio
 - Pydantic
 - Requests
@@ -115,19 +150,31 @@ developer-assistant-tool-call/
 
 ---
 
-# ⚙️ Kurulum
+# 🚀 Canlı Demo
+
+Kurulum yapmadan uygulamayı deneyebilirsiniz.
+
+<div align="center">
+
+[![Open in Hugging Face](https://img.shields.io/badge/🚀%20Open%20Demo-Hugging%20Face-yellow?style=for-the-badge)](https://huggingface.co/spaces/sedayzc/developer-asisstant-tool-call)
+
+</div>
+
+---
+
+# 💻 Lokalde Çalıştırma
 
 ## 1. Repoyu klonlayın
 
 ```bash
-git clone https://github.com/kullanici_adi/developer-assistant-tool-call.git
+git clone https://github.com/ssedayzc/developer-asisstant-tool-call.git
 
-cd developer-assistant-tool-call
+cd developer-asisstant-tool-call
 ```
 
 ---
 
-## 3. Gerekli paketleri yükleyin
+## 2. Gerekli paketleri yükleyin
 
 ```bash
 pip install -r requirements.txt
@@ -135,54 +182,95 @@ pip install -r requirements.txt
 
 ---
 
-## 4. Ollama'yı kurun
+## 3. Hugging Face Access Token oluşturun
 
-https://ollama.com/
+Bu proje **Hugging Face Inference Providers** üzerinden çalışmaktadır.
 
----
+Bu nedenle kendi Hugging Face hesabınıza ait bir **Access Token** oluşturmanız gerekmektedir.
 
-## 5. Qwen3 modelini indirin
+1. Hugging Face hesabınıza giriş yapın.
 
-```bash
-ollama pull qwen3:4b
+2. **Settings → Access Tokens** sayfasına gidin.
+
+3. **Fine-grained Token** oluşturun.
+
+4. Token oluştururken aşağıdaki izni aktif hale getirin.
+
+```
+Make calls to Inference Providers
 ```
 
----
-
-## 6. Ollama'yı başlatın
-
-```bash
-ollama serve
-```
+> [!IMPORTANT]
+>
+> Bu izin verilmediği takdirde uygulama aşağıdaki hatayı verecektir.
+>
+> **403 Forbidden: This authentication method does not have sufficient permissions to call Inference Providers**
 
 ---
 
-## 7. Uygulamayı çalıştırın
+## 4. `.env` dosyasını oluşturun
+
+Proje dizininde aşağıdaki içerikte bir **.env** dosyası oluşturun.
+
+```env
+HF_TOKEN=hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+HF_MODEL=Qwen/Qwen2.5-7B-Instruct
+HF_PROVIDER=together
+---
+
+## 5. Uygulamayı çalıştırın
 
 ```bash
 python app.py
 ```
 
----
-
 # 💡 Örnek Kullanım
 
-Aşağıdaki gibi çok adımlı sorular sorabilirsiniz.
+### 📦 PyPI
 
+```text
+FastAPI paketinin güncel PyPI bilgilerini göster.
 ```
+
+---
+
+### ⭐ GitHub
+
+```text
+openai/openai-python repository'sini incele.
+```
+
+---
+
+### 💬 Stack Overflow
+
+```text
+Python'da TypeError: 'list' object is not callable hatası alıyorum.
+
+Benzer Stack Overflow sorularını bul.
+```
+
+---
+
+### 🔄 Çoklu Tool Kullanımı
+
+```text
 FastAPI ve Flask frameworklerini karşılaştır.
 
 • Güncel PyPI sürümlerini getir.
-• Resmi GitHub repositorylerini bul.
+
+• GitHub repositorylerini incele.
+
 • Stack Overflow üzerindeki popüler soruları araştır.
-• Avantaj ve dezavantajlarını özetle.
+
+• Sonuçları özetle.
 ```
 
 ---
 
-# 📸 Ekran Görüntüleri
+# 📸 Uygulama Görselleri
 
-## Uygulama Arayüzü
+## Ana Arayüz
 
 ![Uygulama](images/app.png)
 
@@ -194,7 +282,7 @@ FastAPI ve Flask frameworklerini karşılaştır.
 
 ---
 
-## Tool Planı ve Tool Sonuçları
+## Tool Planı
 
 ![Tools](images/tools.png)
 
@@ -208,32 +296,23 @@ FastAPI ve Flask frameworklerini karşılaştır.
 
 # 🔍 Desteklenen Araçlar
 
-## 📦 PyPI
-
-- Paket bilgileri
-- Güncel sürüm
-- Lisans bilgisi
-- Python sürüm gereksinimi
-- Açıklama
+| Araç | Açıklama |
+|------|----------|
+| 📦 PyPI | Paket bilgileri, güncel sürüm, lisans ve Python gereksinimleri |
+| ⭐ GitHub | Repository arama, yıldız sayısı, fork, lisans ve açıklama |
+| 💬 Stack Overflow | Benzer teknik sorular ve popüler çözümler |
 
 ---
 
-## ⭐ GitHub
+# ⭐ Öne Çıkan Özellikler
 
-- Repository arama
-- Repository bilgileri
-- Açıklama
-- Yıldız sayısı
-- Fork sayısı
-- Lisans
+- Agentic AI Mimarisi
+- Planner / Executor / Responder Pipeline
+- Tool Calling
+- Structured Output
+- Modüler Tool Registry
+- Çok adımlı karar verme mekanizması
+- Hugging Face Spaces üzerinde çalışabilme
+- Kolay genişletilebilir yapı
 
 ---
-
-## 💬 Stack Overflow
-
-- Benzer teknik sorular
-- Oy sayısı
-- Kabul edilen cevap bilgisi
-- Etiketler
-- Soru bağlantıları
-

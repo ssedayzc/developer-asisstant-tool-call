@@ -1,3 +1,4 @@
+import traceback
 from typing import Any
 
 import gradio as gr
@@ -31,7 +32,7 @@ def process_user_message(
         return (
             "Herhangi bir planner analizi oluşturulmadı.",
             {
-                "calls": []
+                "calls": [],
             },
             [],
             (
@@ -41,15 +42,22 @@ def process_user_message(
         )
 
     try:
-        return run_agent(user_message)
+        return run_agent(
+            user_message.strip()
+        )
 
     except Exception as exc:
+        traceback.print_exc()
+
         error_message = str(exc)
 
         return (
-            "Agent çalıştırılırken hata oluştu.",
+            (
+                "Agent çalıştırılırken hata oluştu.\n\n"
+                f"{error_message}"
+            ),
             {
-                "calls": []
+                "calls": [],
             },
             [
                 {
@@ -59,7 +67,7 @@ def process_user_message(
             ],
             (
                 "## İşlem başarısız\n\n"
-                f"Agent çalıştırılırken bir hata oluştu:\n\n"
+                "Agent çalıştırılırken bir hata oluştu.\n\n"
                 f"```text\n{error_message}\n```"
             ),
         )
@@ -80,7 +88,7 @@ def clear_interface() -> tuple[
         "",
         "",
         {
-            "calls": []
+            "calls": [],
         },
         [],
         "",
@@ -89,17 +97,13 @@ def clear_interface() -> tuple[
 
 with gr.Blocks(
     title=APP_TITLE,
-    theme=gr.themes.Soft(),
 ) as demo:
 
     gr.Markdown(
         f"""
 # 🤖 {APP_TITLE}
-
 {APP_DESCRIPTION}
-
 Desteklenen araçlar:
-
 - **PyPI:** Python paket bilgileri
 - **GitHub:** Repository bilgileri ve repository araması
 - **Stack Overflow:** Programlama hataları ve teknik sorular
@@ -147,7 +151,7 @@ Desteklenen araçlar:
         plan_output = gr.JSON(
             label="Oluşturulan Tool Planı",
             value={
-                "calls": []
+                "calls": [],
             },
         )
 
@@ -252,4 +256,7 @@ if __name__ == "__main__":
         server_port=7860,
         share=False,
         show_error=True,
+        theme=gr.themes.Soft(),
+        ssr_mode=False,
+        pwa=False,
     )

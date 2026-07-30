@@ -114,15 +114,23 @@ def generate_response(
         },
     ]
 
+    print("🧠 Responder LLM çağrısı başlıyor...", flush=True)
+
     try:
         response = llm.generate(
             messages=messages,
             think=False,
         )
     except Exception as exc:
+        print(
+            f"❌ Responder LLM çağrısı başarısız: {repr(exc)}",
+            flush=True,
+        )
         raise RuntimeError(
             f"Responder LLM çağrısı başarısız oldu: {exc}"
         ) from exc
+    
+    print("✅ Responder LLM cevabı alındı.", flush=True)
 
     answer = response.message.content
 
