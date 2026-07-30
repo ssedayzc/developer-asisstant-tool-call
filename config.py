@@ -6,14 +6,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-MODEL = os.getenv(
-    "MODEL",
-    "qwen3:4b",
+HF_TOKEN = os.getenv("HF_TOKEN", "")
+
+HF_MODEL = os.getenv(
+    "HF_MODEL",
+    "Qwen/Qwen3-4B-Instruct-2507",
 )
 
-OLLAMA_HOST = os.getenv(
-    "OLLAMA_HOST",
-    "http://localhost:11434",
+HF_PROVIDER = os.getenv(
+    "HF_PROVIDER",
+    "auto",
 )
 
 GITHUB_TOKEN = os.getenv(
@@ -22,7 +24,5 @@ GITHUB_TOKEN = os.getenv(
 )
 
 PYPI_API = "https://pypi.org/pypi"
-
 GITHUB_API = "https://api.github.com"
-
 STACKEXCHANGE_API = "https://api.stackexchange.com/2.3"

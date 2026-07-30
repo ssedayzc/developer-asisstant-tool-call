@@ -1,5 +1,14 @@
-# 🤖 AI Developer Assistant - Miço
-
+---
+title: AI Developer Assistant - Miço
+emoji: 🤖
+colorFrom: indigo
+colorTo: purple
+sdk: gradio
+app_file: app.py
+pinned: false
+license: mit
+python_version: "3.11"
+---
 LLM destekli, geliştiricilere yönelik akıllı bir yardımcı uygulamasıdır.
 
 Bu proje, **Ollama üzerinde çalışan Qwen3 modeli** ile kullanıcı isteğini analiz eder, gerekli araçları (Tool Calling) otomatik olarak seçer ve elde edilen sonuçları birleştirerek kullanıcıya anlamlı ve kapsamlı bir cevap üretir.

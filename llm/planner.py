@@ -11,9 +11,13 @@ PROMPT_PATH = ROOT / "prompts" / "planner_prompt.txt"
 PROMPT = PROMPT_PATH.read_text(encoding="utf-8")
 
 
-def create_tool_plan(user_message: str) -> tuple[str, ToolPlan]:
+def create_tool_plan(
+    user_message: str,
+) -> tuple[str, ToolPlan]:
     if not user_message.strip():
-        raise ValueError("User message cannot be empty.")
+        raise ValueError(
+            "Kullanıcı mesajı boş olamaz."
+        )
 
     response = llm.generate(
         messages=[
